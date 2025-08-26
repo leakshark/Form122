@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — Responsive Form</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --primary: #4f46e5;
+      --primary-600: #4338ca;
+      --ring: 0 0 0 4px rgba(79, 70, 229, 0.15);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #eef1f8);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 920px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      padding: 28px 28px 0 28px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eef2ff;
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+    }
+    .title {
+      margin: 14px 0 6px 0;
+      font-size: clamp(22px, 3.5vw, 32px);
+      line-height: 1.2;
+    }
+    .subtitle {
+      margin: 0 0 20px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    form {
+      padding: 0 28px 28px 28px;
+      width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    label {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .req::after {
+      content: " *";
+      color: #ef4444;
+    }
+
+    .control {
+      appearance: none;
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.4;
+      transition: box-shadow .15s ease, border-color .15s ease, background .2s;
+    }
+    .control::placeholder { color: #94a3b8; }
+    .control:focus-visible {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--ring);
+    }
+    .control[aria-invalid="true"],
+    .control:invalid:focus-visible {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+    }
+
+    .row { display: grid; gap: 8px; }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      font-size: 14px;
+    }
+    .checkbox input { margin-top: 2px; }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      appearance: none;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
+      flex: 1;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, .25);
+    }
+    .btn-primary:hover { filter: brightness(1.05); }
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    footer {
+      padding: 18px 28px 28px 28px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-top: 1px dashed #eef2ff;
+      text-align: center;
+    }
+    code.inline { background: #f3f4ff; padding: 2px 6px; border-radius: 6px; }
+
+    @media (max-width: 480px) {
+      .title { font-size: 20px; }
+      .subtitle { font-size: 13px; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <section class="header">
+      <span class="badge" aria-hidden="true">📬 Contact Form</span>
+      <h1 class="title">We'd love to hear from you</h1>
+      <p class="subtitle">Fill out the form and our team will get back to you shortly. Fields marked with an asterisk are required.</p>
+    </section>
+
+    <!-- Replace YOUR_FORM_ID with your Formspree endpoint -->
+    <form action="https://formspree.io/f/xandyolz" method="POST">
+      <div class="grid grid-2">
+        <div class="row">
+          <label class="req" for="firstName">First name</label>
+          <input class="control" type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name" />
+        </div>
+        <div class="row">
+          <label class="req" for="lastName">Last name</label>
+          <input class="control" type="text" id="lastName" name="lastName" placeholder="Doe" required autocomplete="family-name" />
+        </div>
+        <div class="row">
+          <label class="req" for="email">Email</label>
+          <input class="control" type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+          <p class="hint">We'll only use this to reply to your message.</p>
+        </div>
+        <div class="row">
+          <label for="phone">Phone (optional)</label>
+          <input class="control" type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" pattern="[+0-9 ()-]{7,}" />
+          <p class="hint">Include country code if outside India.</p>
+        </div>
+        <div class="row">
+          <label class="req" for="subject">Subject</label>
+          <select class="control" id="subject" name="subject" required>
+            <option value="" disabled selected>Select a subject</option>
+            <option>General inquiry</option>
+            <option>Support</option>
+            <option>Feedback</option>
+            <option>Partnership</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="orderId">Order ID (if any)</label>
+          <input class="control" type="text" id="orderId" name="orderId" placeholder="e.g., ORD-12345" />
+        </div>
+        <div class="row" style="grid-column: 1 / -1;">
+          <label class="req" for="message">Message</label>
+          <textarea class="control" id="message" name="message" placeholder="Tell us a bit about what you need..." rows="6" minlength="10" required></textarea>
+          <p class="hint">Minimum 10 characters.</p>
+        </div>
+        <div class="row" style="grid-column: 1 / -1;">
+          <label for="attachment">Attachment (optional)</label>
+          <input class="control" type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.png,.doc,.docx" />
+          <p class="hint">Accepted: PDF, JPG, PNG, DOC, DOCX</p>
+        </div>
+        <div class="row" style="grid-column: 1 / -1;">
+          <label class="checkbox">
+            <input type="checkbox" id="consent" name="consent" required />
+            <span>I agree to the <a href="#" target="_blank" rel="noopener">terms & privacy policy</a>.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="reset" class="btn btn-secondary" aria-label="Reset form">Reset</button>
+        <button type="submit" class="btn btn-primary" aria-label="Submit form">Send Message</button>
+      </div>
+    </form>
+
+    <footer>
+      <span>Tip: You can change the accent color by editing <code class="inline">--primary</code> in the CSS.</span>
+      <span>Made with semantic HTML, accessible labels, and responsive CSS.</span>
+    </footer>
+  </main>
+</body>
+</html>
